@@ -3,25 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Austin Rent vs Buy Analysis</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+    <title>78757 Market Analysis | Whaley</title>
     <style>
         :root {
             --ink: #1a1a1a;
             --ink-light: #4a4a4a;
             --ink-muted: #6b6b6b;
-            --paper: #faf9f7;
-            --paper-warm: #f5f3ef;
-            --accent: #2c5545;
-            --accent-light: #e8f0ec;
-            --savings-green: #1d6f42;
-            --savings-bg: #e6f4eb;
-            --border: #d8d4cc;
-            --border-light: #e8e4dc;
-            --caution: #8b6914;
-            --caution-bg: #fef9e7;
+            --paper: #fafafa;
+            --paper-warm: #f5f5f3;
+            --border: #d4d4d4;
+            --border-light: #e5e5e5;
+            --healthy: #1a7f5a;
+            --healthy-bg: #e8f5f0;
+            --danger: #b33a3a;
+            --danger-bg: #fdf2f2;
+            --warning: #92600e;
+            --warning-bg: #fef9e7;
+            --accent: #2563eb;
         }
 
         * {
@@ -31,7 +29,7 @@
         }
 
         body {
-            font-family: 'Libre Franklin', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             font-size: 16px;
             line-height: 1.6;
             color: var(--ink);
@@ -39,440 +37,326 @@
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 960px;
             margin: 0 auto;
-            padding: 3rem 1.5rem 4rem;
+            padding: 2rem 1.25rem 3rem;
         }
 
-        /* Header */
         header {
-            margin-bottom: 3rem;
-            padding-bottom: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
             border-bottom: 2px solid var(--ink);
         }
 
+        .updated {
+            font-size: 0.75rem;
+            color: var(--ink-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
         h1 {
-            font-family: 'Source Serif 4', Georgia, serif;
-            font-size: clamp(1.75rem, 4vw, 2.5rem);
-            font-weight: 600;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 700;
             letter-spacing: -0.02em;
             line-height: 1.2;
             margin-bottom: 0.5rem;
         }
 
         .subtitle {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--ink-light);
-            font-weight: 400;
         }
 
-        .date {
-            font-size: 0.85rem;
-            color: var(--ink-muted);
-            margin-top: 0.75rem;
-            font-variant-numeric: tabular-nums;
-        }
-
-        /* Section styling */
         section {
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
         }
 
         h2 {
-            font-family: 'Source Serif 4', Georgia, serif;
-            font-size: 1.35rem;
+            font-size: 1.125rem;
             font-weight: 600;
             margin-bottom: 1rem;
             color: var(--ink);
-            letter-spacing: -0.01em;
         }
 
         h3 {
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.08em;
             color: var(--ink-muted);
-            margin-bottom: 1.25rem;
+            margin-bottom: 0.75rem;
         }
 
-        p.intro {
+        p {
             color: var(--ink-light);
-            margin-bottom: 1.5rem;
-            max-width: 680px;
+            margin-bottom: 1rem;
         }
 
-        /* Cards Grid */
-        .cards-grid {
+        .comparison-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.25rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
         }
 
         .card {
-            background: white;
-            border: 1px solid var(--border);
-            padding: 1.5rem;
-            position: relative;
+            padding: 1.25rem;
+            border-radius: 4px;
         }
 
-        .card-label {
-            position: absolute;
-            top: -0.6rem;
-            left: 1rem;
-            background: var(--paper);
-            padding: 0 0.5rem;
-            font-size: 0.7rem;
+        .card.healthy {
+            background: var(--healthy-bg);
+            border-top: 3px solid var(--healthy);
+        }
+
+        .card.danger {
+            background: var(--danger-bg);
+            border-top: 3px solid var(--danger);
+        }
+
+        .card h4 {
+            font-size: 1rem;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--ink-muted);
-        }
-
-        .card-label.purchase {
-            color: var(--accent);
-        }
-
-        .card-label.lease {
-            color: var(--caution);
-        }
-
-        .card-address {
-            font-family: 'Source Serif 4', Georgia, serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            line-height: 1.3;
-        }
-
-        .card-price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--ink);
-            margin-bottom: 0.5rem;
-            font-variant-numeric: tabular-nums;
-        }
-
-        .card-details {
-            font-size: 0.9rem;
-            color: var(--ink-light);
-            margin-bottom: 0.75rem;
-        }
-
-        .card-detail-line {
             margin-bottom: 0.25rem;
         }
 
-        .card-tax-info {
-            font-size: 0.85rem;
-            color: var(--ink-muted);
-            padding-top: 0.75rem;
-            border-top: 1px solid var(--border-light);
-            margin-top: 0.75rem;
-        }
+        .card.healthy h4 { color: var(--healthy); }
+        .card.danger h4 { color: var(--danger); }
 
-        .card-tax-line {
-            margin-bottom: 0.2rem;
-        }
-
-        .tax-note {
-            display: inline-block;
-            background: var(--caution-bg);
-            color: var(--caution);
-            font-size: 0.75rem;
-            padding: 0.2rem 0.5rem;
-            margin-top: 0.5rem;
-            font-weight: 500;
-        }
-
-        .tax-note.none {
-            background: var(--paper-warm);
-            color: var(--ink-muted);
-        }
-
-        .furnished-tag {
-            display: inline-block;
-            background: var(--accent-light);
-            color: var(--accent);
-            font-size: 0.75rem;
-            padding: 0.2rem 0.5rem;
-            font-weight: 500;
-            margin-top: 0.5rem;
-        }
-
-        .price-note {
+        .card-subtitle {
             font-size: 0.8rem;
             color: var(--ink-muted);
-            font-style: italic;
-            margin-top: 0.25rem;
+            margin-bottom: 1rem;
         }
 
-        /* Tables */
-        .table-wrapper {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            margin: 0 -0.5rem;
-            padding: 0 0.5rem;
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.95rem;
-            min-width: 580px;
+        .metric:last-child {
+            border-bottom: none;
         }
 
-        thead {
-            background: var(--paper-warm);
-        }
-
-        th {
-            text-align: left;
-            padding: 0.875rem 1rem;
-            font-weight: 600;
-            font-size: 0.85rem;
+        .metric-label {
+            font-size: 0.875rem;
             color: var(--ink-light);
-            border-bottom: 2px solid var(--border);
-            white-space: nowrap;
         }
 
-        th.numeric {
-            text-align: right;
-        }
-
-        td {
-            padding: 0.875rem 1rem;
-            border-bottom: 1px solid var(--border-light);
+        .metric-value {
+            font-size: 1rem;
+            font-weight: 600;
             font-variant-numeric: tabular-nums;
         }
 
-        td.numeric {
-            text-align: right;
-            font-family: 'Libre Franklin', sans-serif;
+        .metric-value.large {
+            font-size: 1.25rem;
         }
 
-        td.total {
+        .card.healthy .metric-value { color: var(--ink); }
+        .card.danger .metric-value { color: var(--danger); }
+
+        .multiplier {
+            text-align: center;
+            padding: 1.25rem;
+            background: var(--danger-bg);
+            border: 1px solid var(--danger);
+            margin: 1.25rem 0;
+            border-radius: 4px;
+        }
+
+        .multiplier-number {
+            font-size: 2.5rem;
             font-weight: 700;
-            color: var(--ink);
+            color: var(--danger);
+            line-height: 1;
         }
 
-        tr:last-child td {
-            border-bottom: none;
+        .multiplier-label {
+            font-size: 0.875rem;
+            color: var(--ink-light);
+            margin-top: 0.5rem;
         }
 
-        tbody tr:hover {
+        .callout {
             background: var(--paper-warm);
+            border-left: 4px solid var(--ink);
+            padding: 1rem 1.25rem;
+            margin: 1.5rem 0;
         }
 
-        /* Savings table */
-        .savings-cell {
-            background: var(--savings-bg);
-            color: var(--savings-green);
-            font-weight: 600;
-        }
-
-        .scenario-label {
-            font-weight: 500;
-        }
-
-        /* Placement section */
-        .placement-list {
-            background: white;
-            border: 1px solid var(--border);
-            padding: 1.5rem;
-        }
-
-        .placement-item {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--border-light);
-            align-items: baseline;
-        }
-
-        .placement-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-
-        .placement-item:first-child {
-            padding-top: 0;
-        }
-
-        .placement-address {
-            font-weight: 500;
-            min-width: 220px;
-        }
-
-        .placement-arrow {
-            color: var(--ink-muted);
-        }
-
-        .placement-bucket {
+        .callout p {
+            margin: 0;
             color: var(--ink-light);
         }
 
-        .placement-callout {
-            width: 100%;
-            margin-top: 0.5rem;
-            padding: 0.75rem;
-            background: var(--caution-bg);
-            color: var(--caution);
-            font-size: 0.85rem;
-            line-height: 1.4;
+        .callout strong {
+            color: var(--ink);
         }
 
-        /* Narrative section */
+        .data-block {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+        }
+
+        .data-block h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .data-table th,
+        .data-table td {
+            text-align: left;
+            padding: 0.5rem 0.75rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .data-table th {
+            font-weight: 500;
+            color: var(--ink-muted);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .data-table td {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .data-table .value {
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .data-table .negative {
+            color: var(--danger);
+        }
+
+        .data-table .warning {
+            color: var(--warning);
+        }
+
+        .pdf-section {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 4px;
+        }
+
+        .pdf-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .pdf-header h2 {
+            margin: 0;
+        }
+
+        .pdf-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            padding: 0.625rem 1.25rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: 4px;
+            transition: background 0.15s ease;
+        }
+
+        .pdf-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .pdf-embed {
+            width: 100%;
+            height: 600px;
+            border: 1px solid var(--border-light);
+            background: var(--paper-warm);
+        }
+
+        .pdf-fallback {
+            padding: 2rem;
+            text-align: center;
+            color: var(--ink-muted);
+            font-size: 0.9rem;
+        }
+
         .narrative {
             background: white;
             border: 1px solid var(--border);
             padding: 1.5rem;
+            border-radius: 4px;
         }
 
-        .narrative h4 {
+        .narrative blockquote {
             font-size: 0.95rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .narrative ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .narrative li {
-            position: relative;
+            font-style: italic;
+            color: var(--ink-light);
+            line-height: 1.7;
+            margin: 0;
             padding-left: 1.25rem;
-            margin-bottom: 0.75rem;
-            color: var(--ink-light);
-            line-height: 1.5;
+            border-left: 3px solid var(--border);
         }
 
-        .narrative li::before {
-            content: "—";
-            position: absolute;
-            left: 0;
-            color: var(--ink-muted);
+        .narrative blockquote strong {
+            font-style: normal;
+            color: var(--ink);
         }
 
-        .narrative li:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Assumptions accordion */
-        .assumptions {
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--border-light);
-        }
-
-        .assumptions-toggle {
-            background: none;
-            border: none;
-            font-family: inherit;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--ink-muted);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0;
-        }
-
-        .assumptions-toggle:hover {
-            color: var(--ink-light);
-        }
-
-        .assumptions-toggle .icon {
-            transition: transform 0.2s ease;
-            font-size: 0.75rem;
-        }
-
-        .assumptions-toggle.open .icon {
-            transform: rotate(90deg);
-        }
-
-        .assumptions-content {
-            display: none;
-            margin-top: 1rem;
-            padding-left: 0;
-        }
-
-        .assumptions-content.open {
-            display: block;
-        }
-
-        .assumptions-content li {
-            font-size: 0.85rem;
-            color: var(--ink-muted);
-            margin-bottom: 0.4rem;
-            line-height: 1.5;
-        }
-
-        /* Footer */
         footer {
-            margin-top: 3rem;
-            padding-top: 1.5rem;
+            margin-top: 2rem;
+            padding-top: 1rem;
             border-top: 1px solid var(--border);
             font-size: 0.8rem;
             color: var(--ink-muted);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
+        @media (max-width: 640px) {
             .container {
-                padding: 2rem 1rem 3rem;
+                padding: 1.5rem 1rem 2rem;
             }
 
-            header {
-                margin-bottom: 2rem;
-                padding-bottom: 1.5rem;
-            }
-
-            section {
-                margin-bottom: 2.5rem;
-            }
-
-            .cards-grid {
+            .comparison-grid {
                 grid-template-columns: 1fr;
             }
 
-            table {
-                font-size: 0.875rem;
-            }
-
-            th, td {
-                padding: 0.75rem 0.75rem;
-            }
-
-            .placement-item {
-                flex-direction: column;
-                gap: 0.25rem;
-            }
-
-            .placement-arrow {
-                display: none;
-            }
-
-            .placement-bucket::before {
-                content: "→ ";
-                color: var(--ink-muted);
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.5rem;
-            }
-
             .card {
-                padding: 1.25rem;
+                padding: 1rem;
             }
 
-            .card-price {
-                font-size: 1.35rem;
+            .multiplier-number {
+                font-size: 2rem;
+            }
+
+            .pdf-embed {
+                height: 400px;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 0.4rem 0.5rem;
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -480,223 +364,179 @@
 <body>
     <div class="container">
         <header>
-            <h1>Austin Rent vs Buy</h1>
-            <p class="subtitle">Using homes actually available now</p>
-            <p class="date">Analysis prepared December 2025</p>
+            <p class="updated">Last updated: 2024-12-16</p>
+            <h1>78757 Market Analysis</h1>
+            <p class="subtitle">7517 Saint Louis St — Risk Assessment</p>
         </header>
 
-        <!-- Purchase Candidates -->
         <section>
-            <h3>Purchase Candidates</h3>
-            <div class="cards-grid">
-                <div class="card">
-                    <span class="card-label purchase">Purchase</span>
-                    <p class="card-address">4517 Bull Creek Rd<br>Austin, TX 78731</p>
-                    <p class="card-price">$950,000</p>
-                    <div class="card-details">
-                        <p class="card-detail-line">3 bed, 3 bath, 1,836 sq ft</p>
+            <h2>Market Speed vs. Property Lag</h2>
+            <p>Comparing the target property against $650k–$950k homes sold in 78757 (November 2025).</p>
+
+            <div class="comparison-grid">
+                <div class="card healthy">
+                    <h4>78757 Market Standard</h4>
+                    <p class="card-subtitle">Nov '25, $650k–$950k bracket</p>
+                    <div class="metric">
+                        <span class="metric-label">Median Days on Market</span>
+                        <span class="metric-value large">22 Days</span>
                     </div>
-                    <div class="card-tax-info">
-                        <p class="card-tax-line">2025 tax: $16,382</p>
-                        <p class="card-tax-line">Tax rate: 2.1449</p>
-                        <span class="tax-note none">No exemption shown</span>
+                    <div class="metric">
+                        <span class="metric-label">$/SqFt Growth</span>
+                        <span class="metric-value">+0.1%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Sales Volume YoY</span>
+                        <span class="metric-value">-22%</span>
                     </div>
                 </div>
 
-                <div class="card">
-                    <span class="card-label purchase">Purchase</span>
-                    <p class="card-address">7517 Saint Louis St<br>Austin, TX 78757</p>
-                    <p class="card-price">$799,900</p>
-                    <div class="card-details">
-                        <p class="card-detail-line">3 bed, 3 bath, 1,921 sq ft</p>
+                <div class="card danger">
+                    <h4>7517 Saint Louis St</h4>
+                    <p class="card-subtitle">Target Property</p>
+                    <div class="metric">
+                        <span class="metric-label">Days on Market</span>
+                        <span class="metric-value large">207 Days</span>
                     </div>
-                    <div class="card-tax-info">
-                        <p class="card-tax-line">2025 actual tax: $14,359 (est. shown as $14,000)</p>
-                        <p class="card-tax-line">Tax rate: 1.9749</p>
-                        <span class="tax-note">Homestead shown (current owner)</span>
+                    <div class="metric">
+                        <span class="metric-label">Price Cut</span>
+                        <span class="metric-value">-$75,100</span>
                     </div>
-                </div>
-
-                <div class="card">
-                    <span class="card-label purchase">Purchase</span>
-                    <p class="card-address">907 E 53rd St<br>Austin, TX 78751</p>
-                    <p class="card-price">$890,000</p>
-                    <div class="card-details">
-                        <p class="card-detail-line">4 bed, 3 bath, 1,693 sq ft</p>
-                    </div>
-                    <div class="card-tax-info">
-                        <p class="card-tax-line">2025 tax: $8,821</p>
-                        <p class="card-tax-line">Tax rate: 1.9800</p>
-                        <span class="tax-note">Homestead shown (current owner)</span>
+                    <div class="metric">
+                        <span class="metric-label">Status</span>
+                        <span class="metric-value">Unsold</span>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Lease Options -->
-        <section>
-            <h3>Lease Options</h3>
-            <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: 700px;">
-                <div class="card">
-                    <span class="card-label lease">Lease</span>
-                    <p class="card-address">4617 Finley Dr<br>Austin, TX 78731</p>
-                    <p class="card-price">$4,500/mo</p>
-                    <div class="card-details">
-                        <p class="card-detail-line">3 bed, 2 bath, 1,874 sq ft</p>
-                    </div>
-                    <span class="furnished-tag">Furnished</span>
-                </div>
+            <div class="multiplier">
+                <div class="multiplier-number">9.4×</div>
+                <div class="multiplier-label">Property has sat nearly 10× longer than neighborhood median</div>
+            </div>
 
-                <div class="card">
-                    <span class="card-label lease">Lease</span>
-                    <p class="card-address">4506 Oakmont Blvd<br>Austin, TX 78731</p>
-                    <p class="card-price">$3,500/mo</p>
-                    <div class="card-details">
-                        <p class="card-detail-line">4 bed, 3 bath, 1,920 sq ft</p>
-                    </div>
-                    <p class="price-note">Price reduced from $3,995</p>
-                </div>
+            <div class="callout">
+                <p><strong>Interpretation:</strong> Desirable homes in 78757 sell in ~3 weeks (22 days). This property has sat for 7 months. The market has rejected this house at this price multiple times.</p>
             </div>
         </section>
 
-        <!-- Ownership Cost Table -->
         <section>
-            <h2>Estimated Monthly Ownership Cost (Buy)</h2>
-            <p class="intro">Modeled total monthly ownership cost across the $750k–$900k range, including maintenance and an insurance range.</p>
-            <div class="table-wrapper">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Purchase price</th>
-                            <th class="numeric">PITI (low ins)</th>
-                            <th class="numeric">PITI (high ins)</th>
-                            <th class="numeric">Maintenance</th>
-                            <th class="numeric">Total monthly cost</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>$750,000</td>
-                            <td class="numeric">$5,237</td>
-                            <td class="numeric">$5,397</td>
-                            <td class="numeric">$625</td>
-                            <td class="numeric total">$5,860–$6,020</td>
-                        </tr>
-                        <tr>
-                            <td>$800,000</td>
-                            <td class="numeric">$5,574</td>
-                            <td class="numeric">$5,734</td>
-                            <td class="numeric">$667</td>
-                            <td class="numeric total">$6,240–$6,400</td>
-                        </tr>
-                        <tr>
-                            <td>$900,000</td>
-                            <td class="numeric">$6,248</td>
-                            <td class="numeric">$6,408</td>
-                            <td class="numeric">$750</td>
-                            <td class="numeric total">$7,000–$7,160</td>
-                        </tr>
-                    </tbody>
+            <h3>Data Summary</h3>
+
+            <div class="data-block">
+                <h4>Neighborhood: 78757 (Nov 2025)</h4>
+                <table class="data-table">
+                    <tr>
+                        <th>Metric</th>
+                        <th class="value">Value</th>
+                    </tr>
+                    <tr>
+                        <td>Price Bracket</td>
+                        <td class="value">$650k – $950k</td>
+                    </tr>
+                    <tr>
+                        <td>Median Sale Price</td>
+                        <td class="value">$755,000</td>
+                    </tr>
+                    <tr>
+                        <td>Median DOM</td>
+                        <td class="value">22 Days</td>
+                    </tr>
+                    <tr>
+                        <td>Price/SqFt</td>
+                        <td class="value">$448</td>
+                    </tr>
+                    <tr>
+                        <td>$/SqFt Growth</td>
+                        <td class="value warning">+0.1% (Flat)</td>
+                    </tr>
+                    <tr>
+                        <td>Sales Count YoY</td>
+                        <td class="value negative">-22.2%</td>
+                    </tr>
+                    <tr>
+                        <td>Dollar Volume YoY</td>
+                        <td class="value negative">-22.3%</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="data-block">
+                <h4>Target Property: 7517 Saint Louis St</h4>
+                <table class="data-table">
+                    <tr>
+                        <th>Metric</th>
+                        <th class="value">Value</th>
+                    </tr>
+                    <tr>
+                        <td>Current Price</td>
+                        <td class="value">$799,900</td>
+                    </tr>
+                    <tr>
+                        <td>Days on Market</td>
+                        <td class="value negative">207 Days</td>
+                    </tr>
+                    <tr>
+                        <td>Original Price</td>
+                        <td class="value">$875,000</td>
+                    </tr>
+                    <tr>
+                        <td>Total Price Cut</td>
+                        <td class="value negative">-$75,100 (-8.6%)</td>
+                    </tr>
+                    <tr>
+                        <td>Annual Tax</td>
+                        <td class="value">~$14,000</td>
+                    </tr>
+                    <tr>
+                        <td>Tax Rate</td>
+                        <td class="value">~1.97%</td>
+                    </tr>
+                    <tr>
+                        <td>Buyer Incentive</td>
+                        <td class="value negative">$15,000</td>
+                    </tr>
                 </table>
             </div>
         </section>
 
-        <!-- Savings Table -->
         <section>
-            <h2>Monthly Cost Advantage of Leasing</h2>
-            <p class="intro">How much cheaper the available leases are compared to buying in the $750k–$900k range.</p>
-            <div class="table-wrapper">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Scenario</th>
-                            <th class="numeric">vs $750k buy</th>
-                            <th class="numeric">vs $800k buy</th>
-                            <th class="numeric">vs $900k buy</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="scenario-label">Oakmont lease ($3,500)</td>
-                            <td class="numeric savings-cell">+$2,360 to +$2,520</td>
-                            <td class="numeric savings-cell">+$2,740 to +$2,900</td>
-                            <td class="numeric savings-cell">+$3,500+</td>
-                        </tr>
-                        <tr>
-                            <td class="scenario-label">Finley lease ($4,500)</td>
-                            <td class="numeric savings-cell">+$1,360 to +$1,520</td>
-                            <td class="numeric savings-cell">+$1,740 to +$1,900</td>
-                            <td class="numeric savings-cell">+$2,500+</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- Placement Section -->
-        <section>
-            <h2>Where the Purchase Candidates Sit in the Cost Range</h2>
-            <div class="placement-list">
-                <div class="placement-item">
-                    <span class="placement-address">7517 Saint Louis St ($799,900)</span>
-                    <span class="placement-arrow">→</span>
-                    <span class="placement-bucket">Use $800k row of the ownership table</span>
+            <div class="pdf-section">
+                <div class="pdf-header">
+                    <h2>78757 Market Report</h2>
+                    <a href="./assets/pdf/78757_Nov_Market_Data.pdf" target="_blank" rel="noopener" class="pdf-btn">Open PDF in New Tab</a>
                 </div>
-                <div class="placement-item">
-                    <span class="placement-address">907 E 53rd St ($890,000)</span>
-                    <span class="placement-arrow">→</span>
-                    <span class="placement-bucket">Use $900k row of the ownership table</span>
-                </div>
-                <div class="placement-item">
-                    <span class="placement-address">4517 Bull Creek Rd ($950,000)</span>
-                    <span class="placement-arrow">→</span>
-                    <span class="placement-bucket">Above the modeled range</span>
-                    <div class="placement-callout">
-                        $950k is above the $900k bucket, so ownership cost is expected to be higher than the $900k row.
+                
+                <iframe 
+                    src="./assets/pdf/78757_Nov_Market_Data.pdf" 
+                    class="pdf-embed" 
+                    title="78757 November 2025 Market Data"
+                >
+                    <div class="pdf-fallback">
+                        <p>If the PDF does not display, use the link above.</p>
                     </div>
-                </div>
+                </iframe>
+                <noscript>
+                    <div class="pdf-fallback">
+                        <p>If the PDF does not display, use the link above.</p>
+                    </div>
+                </noscript>
             </div>
         </section>
 
-        <!-- Narrative -->
         <section>
-            <h2>What This Means</h2>
+            <h2>Bottom Line</h2>
             <div class="narrative">
-                <ul>
-                    <li>The available leases ($3,500 and $4,500) are below the modeled monthly cost of ownership for $750k–$900k purchases once maintenance is included.</li>
-                    <li>The $799,900 and $890,000 purchase candidates map directly into the $800k and $900k modeled ownership ranges shown above.</li>
-                    <li>The $950,000 purchase candidate is above the modeled range, so monthly ownership cost is expected to exceed the $900k totals shown.</li>
-                </ul>
-
-                <div class="assumptions">
-                    <button class="assumptions-toggle" onclick="toggleAssumptions(this)" aria-expanded="false">
-                        <span class="icon">▶</span>
-                        <span>Assumptions</span>
-                    </button>
-                    <ul class="assumptions-content">
-                        <li>20% down, 30-year fixed at 6.25%</li>
-                        <li>Property taxes and insurance are significant in Austin and are reflected inside the PITI range shown</li>
-                        <li>Maintenance modeled at roughly 1% of purchase price annually (converted to monthly)</li>
-                        <li>Figures are used for comparison, not a loan estimate</li>
-                    </ul>
-                </div>
+                <blockquote>
+                    The 78757 market is slow but functioning—good houses sell in about 3 weeks (22 days).<br><br>
+                    <strong>The Saint Louis St house is an anomaly.</strong> It has sat for 207 days. When a house sits for 7 months in a 3-week market, it is a "Lemon"—usually meaning it is overpriced, has hidden issues, or is in a bad micro-location.<br><br>
+                    Buying this house now isn't buying real estate; it's catching a falling knife. The 0.1% appreciation rate means time will not bail out an overpay. The smarter play: rent (let landlord absorb $14k taxes) or offer significantly less (~$740k) to reflect the stale asset.
+                </blockquote>
             </div>
         </section>
 
         <footer>
-            <p>Prepared for comparison purposes only. Not financial advice.</p>
+            <p>Data from MLS Matrix &amp; Market Reports • November 2025</p>
         </footer>
     </div>
-
-    <script>
-        function toggleAssumptions(button) {
-            const content = button.nextElementSibling;
-            const isOpen = content.classList.contains('open');
-            
-            content.classList.toggle('open');
-            button.classList.toggle('open');
-            button.setAttribute('aria-expanded', !isOpen);
-        }
-    </script>
 </body>
 </html>
