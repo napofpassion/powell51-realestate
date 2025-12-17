@@ -358,6 +358,136 @@
                 padding: 0.4rem 0.5rem;
                 font-size: 0.85rem;
             }
+
+            .safe-price-number {
+                font-size: 2.5rem;
+            }
+
+            .reason-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Safe Price Section */
+        .safe-price-section {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .safe-price-header {
+            background: linear-gradient(135deg, #1a5f4a 0%, #1a7f5a 100%);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .safe-price-header h2 {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .safe-price-number {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .safe-price-tagline {
+            color: rgba(255,255,255,0.85);
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .safe-price-reasons {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .safe-price-reasons h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--ink);
+        }
+
+        .reason-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .reason-item {
+            padding: 1rem;
+            background: var(--paper-warm);
+            border-radius: 4px;
+        }
+
+        .reason-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--healthy);
+            margin-bottom: 0.5rem;
+        }
+
+        .reason-text {
+            font-size: 0.875rem;
+            color: var(--ink-light);
+            line-height: 1.5;
+        }
+
+        .equity-logic {
+            padding: 1.5rem;
+        }
+
+        .equity-logic h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--ink);
+        }
+
+        .equity-logic > p {
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .script-block {
+            background: var(--paper-warm);
+            border-left: 4px solid var(--healthy);
+            padding: 1.25rem;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .script-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .script-block blockquote {
+            font-size: 0.95rem;
+            font-style: italic;
+            color: var(--ink-light);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        .script-block blockquote strong {
+            font-style: normal;
+            color: var(--healthy);
         }
     </style>
 </head>
@@ -396,147 +526,3 @@
                     <p class="card-subtitle">Target Property</p>
                     <div class="metric">
                         <span class="metric-label">Days on Market</span>
-                        <span class="metric-value large">207 Days</span>
-                    </div>
-                    <div class="metric">
-                        <span class="metric-label">Price Cut</span>
-                        <span class="metric-value">-$75,100</span>
-                    </div>
-                    <div class="metric">
-                        <span class="metric-label">Status</span>
-                        <span class="metric-value">Unsold</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="multiplier">
-                <div class="multiplier-number">9.4×</div>
-                <div class="multiplier-label">Property has sat nearly 10× longer than neighborhood median</div>
-            </div>
-
-            <div class="callout">
-                <p><strong>Interpretation:</strong> Desirable homes in 78757 sell in ~3 weeks (22 days). This property has sat for 7 months. The market has rejected this house at this price multiple times.</p>
-            </div>
-        </section>
-
-        <section>
-            <h3>Data Summary</h3>
-
-            <div class="data-block">
-                <h4>Neighborhood: 78757 (Nov 2025)</h4>
-                <table class="data-table">
-                    <tr>
-                        <th>Metric</th>
-                        <th class="value">Value</th>
-                    </tr>
-                    <tr>
-                        <td>Price Bracket</td>
-                        <td class="value">$650k – $950k</td>
-                    </tr>
-                    <tr>
-                        <td>Median Sale Price</td>
-                        <td class="value">$755,000</td>
-                    </tr>
-                    <tr>
-                        <td>Median DOM</td>
-                        <td class="value">22 Days</td>
-                    </tr>
-                    <tr>
-                        <td>Price/SqFt</td>
-                        <td class="value">$448</td>
-                    </tr>
-                    <tr>
-                        <td>$/SqFt Growth</td>
-                        <td class="value warning">+0.1% (Flat)</td>
-                    </tr>
-                    <tr>
-                        <td>Sales Count YoY</td>
-                        <td class="value negative">-22.2%</td>
-                    </tr>
-                    <tr>
-                        <td>Dollar Volume YoY</td>
-                        <td class="value negative">-22.3%</td>
-                    </tr>
-                </table>
-            </div>
-
-            <div class="data-block">
-                <h4>Target Property: 7517 Saint Louis St</h4>
-                <table class="data-table">
-                    <tr>
-                        <th>Metric</th>
-                        <th class="value">Value</th>
-                    </tr>
-                    <tr>
-                        <td>Current Price</td>
-                        <td class="value">$799,900</td>
-                    </tr>
-                    <tr>
-                        <td>Days on Market</td>
-                        <td class="value negative">207 Days</td>
-                    </tr>
-                    <tr>
-                        <td>Original Price</td>
-                        <td class="value">$875,000</td>
-                    </tr>
-                    <tr>
-                        <td>Total Price Cut</td>
-                        <td class="value negative">-$75,100 (-8.6%)</td>
-                    </tr>
-                    <tr>
-                        <td>Annual Tax</td>
-                        <td class="value">~$14,000</td>
-                    </tr>
-                    <tr>
-                        <td>Tax Rate</td>
-                        <td class="value">~1.97%</td>
-                    </tr>
-                    <tr>
-                        <td>Buyer Incentive</td>
-                        <td class="value negative">$15,000</td>
-                    </tr>
-                </table>
-            </div>
-        </section>
-
-        <section>
-            <div class="pdf-section">
-                <div class="pdf-header">
-                    <h2>78757 Market Report</h2>
-                    <a href="./assets/pdf/78757_Nov_Market_Data.pdf" target="_blank" rel="noopener" class="pdf-btn">Open PDF in New Tab</a>
-                </div>
-                
-                <iframe 
-                    src="./assets/pdf/78757_Nov_Market_Data.pdf" 
-                    class="pdf-embed" 
-                    title="78757 November 2025 Market Data"
-                >
-                    <div class="pdf-fallback">
-                        <p>If the PDF does not display, use the link above.</p>
-                    </div>
-                </iframe>
-                <noscript>
-                    <div class="pdf-fallback">
-                        <p>If the PDF does not display, use the link above.</p>
-                    </div>
-                </noscript>
-            </div>
-        </section>
-
-        <section>
-            <h2>Bottom Line</h2>
-            <div class="narrative">
-                <blockquote>
-                    The 78757 market is slow but functioning—good houses sell in about 3 weeks (22 days).<br><br>
-                    <strong>The Saint Louis St house is an anomaly.</strong> It has sat for 207 days. When a house sits for 7 months in a 3-week market, it is a "Lemon"—usually meaning it is overpriced, has hidden issues, or is in a bad micro-location.<br><br>
-                    Buying this house now isn't buying real estate; it's catching a falling knife. The 0.1% appreciation rate means time will not bail out an overpay. The smarter play: rent (let landlord absorb $14k taxes) or offer significantly less (~$740k) to reflect the stale asset.
-                </blockquote>
-            </div>
-        </section>
-
-        <footer>
-            <p>Data from MLS Matrix &amp; Market Reports • November 2025</p>
-        </footer>
-    </div>
-</body>
-</html>
